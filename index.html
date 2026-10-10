@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Список модов The Sims 4 от Bziki: что делают, кто перевёл и где скачать у авторов.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2244%22 fill=%22%23c9441b%22/%3E%3C/svg%3E">
+<title>Мод-лист Bziki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: каталог-реестр. Узкая колонка, липкая панель фильтров, позиции списком с волосяными разделителями; Ember & Ink — чернила + угольно-оранжевый акцент. */
+:root{
+  --bg:#f3f1f4; --surface:#ffffff; --fg:#1c1820; --muted:#665f6c; --line:#dcd6e0;
+  --ember:#c9441b; --ember-soft:#f6e0d6; --moss:#2f6652; --moss-soft:#dcebe4; --ink-soft:#e7e3ea;
+  --f-display:"Unbounded","Golos Text",system-ui,sans-serif;
+  --f-body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141118; --surface:#1c1820; --fg:#ece6ef; --muted:#9d95a3; --line:#2f2935;
+  --ember:#ff7b47; --ember-soft:#3b2119; --moss:#7cc7a8; --moss-soft:#1c2f28; --ink-soft:#26212b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141118; --surface:#1c1820; --fg:#ece6ef; --muted:#9d95a3; --line:#2f2935;
+  --ember:#ff7b47; --ember-soft:#3b2119; --moss:#7cc7a8; --moss-soft:#1c2f28; --ink-soft:#26212b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1040px;margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:4px}
+
+.hero{padding-block:56px 28px;display:grid;gap:18px}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.eyebrow b{color:var(--ember);font-weight:500}
+h1{font:700 clamp(34px,7vw,64px)/1.02 var(--f-display);margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--ember)}
+.lead{max-width:62ch;margin:0;color:var(--muted);font-size:17px}
+.notice{display:grid;gap:8px;padding:16px 18px;border-left:3px solid var(--ember);background:var(--surface);border-radius:0 10px 10px 0;max-width:72ch}
+.notice p{margin:0;font-size:15px}
+.notice a{color:var(--ember);font-weight:500}
+.hash{font:13px var(--f-mono);background:var(--ink-soft);padding:1px 6px;border-radius:4px;white-space:nowrap}
+
+.stats{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:6px}
+.stat{flex:1 1 140px;padding:14px 16px 14px 0;display:grid;gap:2px}
+.stat + .stat{padding-left:16px;border-left:1px solid var(--line)}
+.stat b{font:700 28px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.stat.hot b{color:var(--ember)}
+@media (max-width:560px){.stat + .stat{border-left:0;padding-left:0}.stat{flex-basis:45%}}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 240px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0 12px}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:15px var(--f-body);padding:10px 0;outline:none}
+.search label{font:12px var(--f-mono);color:var(--muted)}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;cursor:pointer;background:var(--surface);user-select:none}
+.toggle input{accent-color:var(--ember);margin:0}
+.toggle:has(input:checked){border-color:var(--ember);background:var(--ember-soft)}
+.nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.nav a{flex:none;text-decoration:none;font-size:13px;padding:5px 10px;border-radius:6px;background:var(--ink-soft);white-space:nowrap}
+.nav a:hover{background:var(--ember-soft)}
+.nav .n{font:11px var(--f-mono);color:var(--muted);margin-left:2px}
+.found{font:12px var(--f-mono);color:var(--muted)}
+
+.cat{padding-top:44px;scroll-margin-top:130px}
+.cat-head{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:4px 12px;margin-bottom:6px}
+.cat-head h2{font:700 clamp(20px,3.4vw,26px)/1.2 var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.cat-head .count{font:500 13px var(--f-mono);color:var(--ember)}
+.cat-head p{grid-column:1/-1;margin:0;color:var(--muted);font-size:15px;max-width:65ch}
+.mods{list-style:none;margin:0;padding:0}
+.mod{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr) minmax(0,13rem);gap:6px 24px;padding:14px 0;border-top:1px solid var(--line);align-items:start}
+.mod h3{font:600 15.5px/1.35 var(--f-body);margin:0}
+.author{margin:2px 0 0;font:12.5px/1.4 var(--f-mono);color:var(--muted)}
+.what{margin:0;font-size:15px;max-width:60ch}
+.meta{display:grid;gap:8px;justify-items:start}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font:500 11px/1 var(--f-mono);padding:4px 7px;border-radius:5px;letter-spacing:.02em;white-space:nowrap}
+.tag-s{background:var(--ink-soft);color:var(--fg)}
+.tag-o{background:var(--moss-soft);color:var(--moss)}
+.tag-ru{background:var(--ink-soft);color:var(--muted)}
+.tag-bz{background:var(--ember);color:var(--bg)}
+.dl{font-size:13.5px;font-weight:500;color:var(--ember);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px}
+.dl:hover{color:var(--fg)}
+.links{display:flex;flex-wrap:wrap;gap:6px 14px}
+.dl.none{color:var(--muted);border-bottom:1px dashed var(--line);font-weight:400}
+@media (max-width:820px){.mod{grid-template-columns:minmax(0,1fr)}.meta{grid-auto-flow:row}}
+
+.empty{padding:40px 0;color:var(--muted)}
+.notes{margin-top:64px;padding-top:24px;border-top:2px solid var(--fg);display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.notes h2{font:700 15px/1.3 var(--f-display);margin:0 0 6px}
+.notes p,.notes li{font-size:14.5px;color:var(--muted);margin:0}
+.notes ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:13px;color:var(--muted);align-items:center}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+<style>:root{color-scheme:light}html{padding-block:env(safe-area-inset-top,0px) env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow"><b>The Sims 4</b> · список модов · ссылки актуальны на октябрь 2026</div>
+    <h1>Мод-лист <em>Bziki</em></h1>
+    <p class="lead">Моды из игры Bziki: скрипт-моды, тюнинг, фиксы, функциональные предметы, замены интерфейса, CAS-дефолты и окружение. Одежда, причёски и строительные наборы в список не вошли.</p>
+    <div class="stats">
+      <div class="stat"><b>234</b><span>позиций в списке</span></div>
+      <div class="stat"><b>51</b><span>со скриптами .ts4script</span></div>
+      <div class="stat"><b>18</b><span>функциональных предметов</span></div>
+      <div class="stat"><b>81</b><span>с русским переводом</span></div>
+      <div class="stat hot"><b>30</b><span>переведено Bziki</span></div>
+    </div>
+    <aside class="notice" aria-label="Важно">
+      <p>Практически все переводы принадлежат группе <a href="https://vk.ru/origamika_sims4" target="_blank" rel="noopener">Оригамика</a>, вы можете найти их во ВКонтакте.</p>
+      <p>За всеми обновлениями следите самостоятельно, пожалуйста: здесь указаны актуальные ссылки на момент сбора статьи. Всегда сверяйтесь с информацией в посте у автора или отслеживайте обновления модов в Оригамике в 12- и 15-часовых постах или по хештегу <span class="hash">#updates@origamika_sims4</span>.</p>
+      <p><b>Поддержка по вопросам установки, конфликтов и ошибок модов не оказывается.</b> Внимательно читайте посты и статьи авторов и переводчиков и задавайте вопросы в соответствующих местах.</p>
+    </aside>
+    <div class="legend">
+      <span class="tag tag-s">скрипт</span> нужен .ts4script
+      <span class="tag tag-o">предмет</span> объект в покупке
+      <span class="tag tag-ru">RU · переводчик</span>
+      <span class="tag tag-bz">RU · Bziki</span>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="controls">
+      <div class="search"><label for="q">Поиск</label><input id="q" type="search" placeholder="название, автор, переводчик…" autocomplete="off"></div>
+      <label class="toggle" for="fBz"><input type="checkbox" id="fBz">Переводы Bziki</label>
+      <label class="toggle" for="fS"><input type="checkbox" id="fS">Только скрипты</label>
+      <label class="toggle" for="fO"><input type="checkbox" id="fO">Предметы</label>
+    </div>
+    <nav class="nav" aria-label="Разделы"><a href="#core">Ядро и библиотеки <span class="n">13</span></a><a href="#ui">Интерфейс и удобство <span class="n">16</span></a><a href="#perf">Производительность и фиксы <span class="n">18</span></a><a href="#play">Геймплей, автономия и мир <span class="n">22</span></a><a href="#social">Общение, отношения и жизнь NPC <span class="n">28</span></a><a href="#simkatu">Анимации и взаимодействия simkatu <span class="n">11</span></a><a href="#family">Дети и семья <span class="n">9</span></a><a href="#food">Еда и напитки <span class="n">12</span></a><a href="#vamp">Вампиры и оккульты <span class="n">21</span></a><a href="#objects">Функциональные предметы <span class="n">27</span></a><a href="#pose">Позы, свет и съёмка <span class="n">17</span></a><a href="#cas">CAS Default <span class="n">20</span></a><a href="#visual">Визуальные замены <span class="n">13</span></a><a href="#env">Окружение и транспорт <span class="n">5</span></a><a href="#adult">18+ <span class="n">2</span></a></nav>
+    <div class="found" id="found" aria-live="polite"></div>
+  </div>
+
+  <main id="list"><section class="cat" id="core">
+<header class="cat-head"><h2>Ядро и библиотеки</h2><span class="count">13</span><p>Без этого остальное не заводится. Обновлять первыми после каждого патча.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="mc command center (mccc) deaderpool пульт управления миром: население, беременности, кармы истории, наряды, клубы, оккульты, очистка сохранений и тонкий тюнинг автономии. ">
+<div class="who"><h3>MC Command Center (MCCC)</h3><p class="author">Deaderpool</p></div>
+<p class="what">Пульт управления миром: население, беременности, кармы истории, наряды, клубы, оккульты, очистка сохранений и тонкий тюнинг автономии.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://deaderpool-mccc.com" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="ui cheats extension weerbesu чит-клики прямо по интерфейсу: потребности, навыки, отношения, деньги, карьера, настроение — правым кликом. ">
+<div class="who"><h3>UI Cheats Extension</h3><p class="author">weerbesu</p></div>
+<p class="what">Чит-клики прямо по интерфейсу: потребности, навыки, отношения, деньги, карьера, настроение — правым кликом.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/weerbesu" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="lot 51 core library lot 51 скриптовая библиотека, которую требуют моды lot 51 и ряд других авторов. ">
+<div class="who"><h3>Lot 51 Core Library</h3><p class="author">Lot 51</p></div>
+<p class="what">Скриптовая библиотека, которую требуют моды Lot 51 и ряд других авторов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://lot51.cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="xml injector scumbumbo / triplis технический мод-инжектор: позволяет другим модам добавлять взаимодействия, не переписывая файлы игры. ">
+<div class="who"><h3>XML Injector</h3><p class="author">Scumbumbo / triplis</p></div>
+<p class="what">Технический мод-инжектор: позволяет другим модам добавлять взаимодействия, не переписывая файлы игры.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://scumbumbomods.com/xml-injector" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="lumpinou’s toolbox lumpinou скриптовая библиотека для всех модов lumpinou (mood pack, first impressions и др.). ">
+<div class="who"><h3>Lumpinou’s Toolbox</h3><p class="author">Lumpinou</p></div>
+<p class="what">Скриптовая библиотека для всех модов Lumpinou (Mood Pack, First Impressions и др.).</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://lumpinoumods.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="midnitetech mod library midnitetech общая библиотека для модов midnitetech, нужна simu: academic life. ">
+<div class="who"><h3>midnitetech Mod Library</h3><p class="author">midnitetech</p></div>
+<p class="what">Общая библиотека для модов midnitetech, нужна SimU: Academic Life.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/c/midnitetech" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="kayladot npc events shared kayladot общий модуль для npc-событий kayladot (свадьбы, вечеринки, дни рождения). ">
+<div class="who"><h3>KaylaDot NPC Events Shared</h3><p class="author">KaylaDot</p></div>
+<p class="what">Общий модуль для NPC-событий KaylaDot (свадьбы, вечеринки, дни рождения).</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/npc-weddings-and-invites" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="better exceptions twistedmexi ловит ошибки модов, объясняет, какой файл виноват, и подсказывает, что обновить. ">
+<div class="who"><h3>Better Exceptions</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Ловит ошибки модов, объясняет, какой файл виноват, и подсказывает, что обновить.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="modguard twistedmexi защита от вредоносных скриптов в модах: блокирует подозрительные .ts4script. ">
+<div class="who"><h3>ModGuard</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Защита от вредоносных скриптов в модах: блокирует подозрительные .ts4script.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="t.o.o.l. twistedmexi свободное перемещение, вращение и масштабирование объектов в режиме строительства и жизни. оригамика">
+<div class="who"><h3>T.O.O.L.</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Свободное перемещение, вращение и масштабирование объектов в режиме строительства и жизни.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="better buildbuy twistedmexi расширенный режим строительства: скрытые и отладочные объекты, фильтры, удобный каталог. оригамика">
+<div class="who"><h3>Better BuildBuy</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Расширенный режим строительства: скрытые и отладочные объекты, фильтры, удобный каталог.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="searchable household management twistedmexi поиск по имени в окне управления семьями. ">
+<div class="who"><h3>Searchable Household Management</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Поиск по имени в окне управления семьями.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="searchable sim picker twistedmexi поиск по имени в любых окнах выбора персонажа. ">
+<div class="who"><h3>Searchable Sim Picker</h3><p class="author">TwistedMexi</p></div>
+<p class="what">Поиск по имени в любых окнах выбора персонажа.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://twistedmexi.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="ui">
+<header class="cat-head"><h2>Интерфейс и удобство</h2><span class="count">16</span><p>Меню, карты, иконки, уведомления — всё, что делает игру приятнее на вид и в управлении.</p></header>
+<ul class="mods"><li class="mod" data-f="   " data-q="bigger family tree window simmattically увеличенное окно семейного древа. ">
+<div class="who"><h3>Bigger Family Tree Window</h3><p class="author">SimMattically</p></div>
+<p class="what">Увеличенное окно семейного древа.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/SimMattically/posts/bigger-family-150671471?collection=1619621" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="quick save button (build/buy + ui cheats) simmattically кнопка быстрого сохранения в интерфейсе, две версии под совместимость. ">
+<div class="who"><h3>Quick Save Button (Build/Buy + UI Cheats)</h3><p class="author">SimMattically</p></div>
+<p class="what">Кнопка быстрого сохранения в интерфейсе, две версии под совместимость.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/SimMattically/posts/quick-save-build-152087374?collection=1619621" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="refreshed main menu — cherry blossom simmattically новое оформление главного меню, вариант с сакурой. ">
+<div class="who"><h3>Refreshed Main Menu — Cherry Blossom</h3><p class="author">SimMattically</p></div>
+<p class="what">Новое оформление главного меню, вариант с сакурой.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/SimMattically/posts/refreshed-main-128798763" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="immersive world map simmattically единая карта, объединяющая все миры. jemimma">
+<div class="who"><h3>Immersive World Map</h3><p class="author">SimMattically</p></div>
+<p class="what">Единая карта, объединяющая все миры.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jemimma</span></div><a class="dl" href="https://www.patreon.com/SimMattically/posts/public-release-164621133" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="instant pie menu modsby круговое меню взаимодействий открывается мгновенно, без задержки. ">
+<div class="who"><h3>Instant Pie Menu</h3><p class="author">Modsby</p></div>
+<p class="what">Круговое меню взаимодействий открывается мгновенно, без задержки.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/Modsby/posts/modsbys-instant-169842644" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no fade everything (все дополнения) + no fade sims &amp; objects mizoreyukii объекты и персонажи не исчезают, когда камера подлетает близко. ">
+<div class="who"><h3>No Fade Everything (все дополнения) + No Fade Sims &amp; Objects</h3><p class="author">MizoreYukii</p></div>
+<p class="what">Объекты и персонажи не исчезают, когда камера подлетает близко.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://mizoreyukii.tumblr.com/post/188087358146/no-fade-on-everything" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="nofade (eps, kits &amp; stuff) buggy starship дополнение nofade для новых дополнений и китов. ">
+<div class="who"><h3>NoFade (EPs, Kits &amp; Stuff)</h3><p class="author">buggy starship</p></div>
+<p class="what">Дополнение NoFade для новых дополнений и китов.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/starshipcap/posts/7ea6501f-d6ae-4298-be6e-43ca747ecfd5" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="visible columns in live &amp; buildbuy twelfthdoctor1 колонны не становятся прозрачными в режиме жизни и строительства. ">
+<div class="who"><h3>Visible Columns in Live &amp; BuildBuy</h3><p class="author">TwelfthDoctor1</p></div>
+<p class="what">Колонны не становятся прозрачными в режиме жизни и строительства.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/51438757" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="world map — no outlines mama-llama убирает обводку участков на карте мира. ">
+<div class="who"><h3>World Map — No Outlines</h3><p class="author">Mama-Llama</p></div>
+<p class="what">Убирает обводку участков на карте мира.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/mama_llama/posts/map-without-lot-151796521" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="realistic world icons + замены карт mama-llama, filipesims, dershayan, alerion реалистичные иконки миров и перерисованные карты почти для всех городков. ">
+<div class="who"><h3>Realistic World Icons + замены карт</h3><p class="author">Mama-Llama, filipesims, DerShayan, Alerion</p></div>
+<p class="what">Реалистичные иконки миров и перерисованные карты почти для всех городков.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/filipesims_art/posts/map-replacement-150881207" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="fluffy clouds override miiko пушистые облака в разных городах. ">
+<div class="who"><h3>Fluffy Clouds Override</h3><p class="author">miiko</p></div>
+<p class="what">Пушистые облака в разных городах.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/miikocc/posts/fluffy-clouds-87434222" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="more dynasty symbols / holiday &amp; club icons / small business logos natabear больше символов для династий, иконок праздников и клубов, логотипов малого бизнеса. ">
+<div class="who"><h3>More Dynasty Symbols / Holiday &amp; Club Icons / Small Business Logos</h3><p class="author">natabear</p></div>
+<p class="what">Больше символов для династий, иконок праздников и клубов, логотипов малого бизнеса.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/collection/722681?view=expanded" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="visitor notifications simularity уведомления о том, кто пришёл на участок. ">
+<div class="who"><h3>Visitor Notifications</h3><p class="author">simularity</p></div>
+<p class="what">Уведомления о том, кто пришёл на участок.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://modthesims.info/download.php?t=630442" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="laundry done notifier meg уведомление, когда стирка или сушка закончилась. pumpkin4u">
+<div class="who"><h3>Laundry Done Notifier</h3><p class="author">meg</p></div>
+<p class="what">Уведомление, когда стирка или сушка закончилась.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Pumpkin4u</span></div><a class="dl" href="https://www.patreon.com/posts/153442081" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="loading tips, custom wrench icon, tidy cas bziki подсказки на экране загрузки, иконка гаечного ключа с сердечком и упорядоченный cas. ">
+<div class="who"><h3>Loading Tips, Custom Wrench Icon, Tidy CAS</h3><p class="author">Bziki</p></div>
+<p class="what">Подсказки на экране загрузки, иконка гаечного ключа с сердечком и упорядоченный CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/bziki" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="экран загрузки «what does the fox say» jemimma эксклюзивный экран загрузки, сделанный для bziki. ">
+<div class="who"><h3>Экран загрузки «What does the fox say»</h3><p class="author">Jemimma</p></div>
+<p class="what">Эксклюзивный экран загрузки, сделанный для Bziki.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/jemmsims" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="perf">
+<header class="cat-head"><h2>Производительность и фиксы</h2><span class="count">18</span><p>Чинят баги EA, разгружают симуляцию и не дают очереди действий забиваться.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="simulation timeline unclogger turbodriver чистит забитую очередь симуляции, персонажи перестают зависать на месте. ">
+<div class="who"><h3>Simulation Timeline Unclogger</h3><p class="author">TURBODRIVER</p></div>
+<p class="what">Чистит забитую очередь симуляции, персонажи перестают зависать на месте.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/simulation-unclogger" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="quicker autonomy &amp; simulation lag improvements cool1 ускоряет принятие решений автономией и снижает лаги симуляции. для скачивания нужна регистрация на форуме. ">
+<div class="who"><h3>Quicker Autonomy &amp; Simulation Lag Improvements</h3><p class="author">cool1</p></div>
+<p class="what">Ускоряет принятие решений автономией и снижает лаги симуляции. Для скачивания нужна регистрация на форуме.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://simsasylum.com/tfm/index.php?/topic/14126-quicker-sim-autonomy-simulation-lag-improvements-march-2023-196-update/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="improved autonomy during loading screens weerbesu персонажи не стоят столбом сразу после загрузки участка. ">
+<div class="who"><h3>Improved Autonomy During Loading Screens</h3><p class="author">weerbesu</p></div>
+<p class="what">Персонажи не стоят столбом сразу после загрузки участка.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/posts/25395301" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="no empty venues when arriving weerbesu общественные участки сразу заполнены людьми, а не пустые при прибытии. ">
+<div class="who"><h3>No Empty Venues When Arriving</h3><p class="author">weerbesu</p></div>
+<p class="what">Общественные участки сразу заполнены людьми, а не пустые при прибытии.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/weerbesu/posts/no-empty-venues-25331818" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="queue guard tyjokr защищает очередь действий от сброса и чужих вклиниваний. ">
+<div class="who"><h3>Queue Guard</h3><p class="author">tyjokr</p></div>
+<p class="what">Защищает очередь действий от сброса и чужих вклиниваний.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/queue-guard" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="unofficial gameplay patch (multi) zero сборник неофициальных исправлений геймплея ea. ">
+<div class="who"><h3>Unofficial Gameplay Patch (MULTI)</h3><p class="author">Zero</p></div>
+<p class="what">Сборник неофициальных исправлений геймплея EA.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/zer0_Mods_/posts/unofficial-patch-150876053" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="cubemap remover lotharihoe убирает отражения-кубмапы, из-за которых блестят стены и полы. ">
+<div class="who"><h3>Cubemap Remover</h3><p class="author">lotharihoe</p></div>
+<p class="what">Убирает отражения-кубмапы, из-за которых блестят стены и полы.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/cubemap-remover" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   nl" data-q="blob remover lumialoversims убирает размытое пятно-тень под персонажами в cas. ">
+<div class="who"><h3>Blob Remover</h3><p class="author">LumiaLoverSims</p></div>
+<p class="what">Убирает размытое пятно-тень под персонажами в CAS.</p>
+<div class="meta"><div class="tags"></div><span class="dl none">ссылку не нашла</span></div>
+</li><li class="mod" data-f="   " data-q="no censor mosaic cool1 отключает пиксельную цензуру. для скачивания нужна регистрация на форуме. ">
+<div class="who"><h3>No Censor Mosaic</h3><p class="author">cool1</p></div>
+<p class="what">Отключает пиксельную цензуру. Для скачивания нужна регистрация на форуме.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://simsasylum.com/tfm/index.php?/topic/16451-no-censor-blur-mosaic-all-sims-compatible-with-ww-new-december-2022/page/3/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="milestone fix for cc objects lumpinou исправляет рубежи, которые ломаются при использовании cc-объектов. ">
+<div class="who"><h3>Milestone Fix for CC Objects</h3><p class="author">Lumpinou</p></div>
+<p class="what">Исправляет рубежи, которые ломаются при использовании CC-объектов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/lumpinou/posts/mod-milestone-no-81237568" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="infant crib &amp; playmat fix deadlystingnyc младенцы, лежащие на коврике или в кроватке, корректно распознаются игрой. ">
+<div class="who"><h3>Infant Crib &amp; Playmat Fix</h3><p class="author">deadlystingnyc</p></div>
+<p class="what">Младенцы, лежащие на коврике или в кроватке, корректно распознаются игрой.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/infant-crib-playmat-fix" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="faster disband lunarbritney исправляет проблемы в играх с бросанием мяча из дополнения «времена года». теперь персонажи участвуют в них активнее. ">
+<div class="who"><h3>Faster Disband</h3><p class="author">LunarBritney</p></div>
+<p class="what">Исправляет проблемы в играх с бросанием мяча из дополнения «Времена года». Теперь персонажи участвуют в них активнее.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/lunarbritney/posts/faster-ball-164635149" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no autonomous waltz practice psylockex персонажи не репетируют вальс самостоятельно. ">
+<div class="who"><h3>No Autonomous Waltz Practice</h3><p class="author">PsylockeX</p></div>
+<p class="what">Персонажи не репетируют вальс самостоятельно.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/PsylockeX/posts/r-l-no-waltz-166939041" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="fight availability fix sims4me исправляет баг, из-за которого взаимодействие «драться» становилось случайно доступным или происходило автоматически с симпатизирующими или дружелюбными персонажами. ">
+<div class="who"><h3>Fight Availability Fix</h3><p class="author">sims4me</p></div>
+<p class="what">Исправляет баг, из-за которого взаимодействие «Драться» становилось случайно доступным или происходило автоматически с симпатизирующими или дружелюбными персонажами.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/fight-availabilty-fix" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="fear bugs fix sonozakisisters чинит баги со страхами (ошибочно появляющиеся и не уходящие страхи). ">
+<div class="who"><h3>Fear Bugs Fix</h3><p class="author">SonozakiSisters</p></div>
+<p class="what">Чинит баги со страхами (ошибочно появляющиеся и не уходящие страхи).</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/SonozakiSistersSims4/posts/fear-bugs-fix-163356900" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="set parent cheat sonozakisisters чит для назначения родителя любому персонажу. ">
+<div class="who"><h3>Set Parent Cheat</h3><p class="author">SonozakiSisters</p></div>
+<p class="what">Чит для назначения родителя любому персонажу.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/SonozakiSistersSims4/posts/set-parent-fix-154998797" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="matchmake fix kayladot исправляет сватовство. ">
+<div class="who"><h3>Matchmake Fix</h3><p class="author">KaylaDot</p></div>
+<p class="what">Исправляет сватовство.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/base-game-matchmake-fix" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="parenthood: help fix bad relationship bug fix kayladot исправляет взаимодействие «помочь наладить отношения» из «родителей». ">
+<div class="who"><h3>Parenthood: Help Fix Bad Relationship Bug Fix</h3><p class="author">KaylaDot</p></div>
+<p class="what">Исправляет взаимодействие «Помочь наладить отношения» из «Родителей».</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/parenthood-help-fix-bad-relationship-bug-fix" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="play">
+<header class="cat-head"><h2>Геймплей, автономия и мир</h2><span class="count">22</span><p>Правила игры: сезоны, уборка, вечеринки, предпочтения, заведения и генетика.</p></header>
+<ul class="mods"><li class="mod" data-f="   " data-q="gameplay rebalance: emotions (bg core + laundry day) zero пересобирает баланс эмоций: мудлеты слабее заваливают персонажей одной эмоцией. ">
+<div class="who"><h3>Gameplay Rebalance: Emotions (BG Core + Laundry Day)</h3><p class="author">Zero</p></div>
+<p class="what">Пересобирает баланс эмоций: мудлеты слабее заваливают персонажей одной эмоцией.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/zer0_Mods_/posts/emotional-150759134" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="21 days season instead of 28 littlemssam сезон длится 21 день вместо 28. ">
+<div class="who"><h3>21 Days Season Instead of 28</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Сезон длится 21 день вместо 28.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/seasons-21-days-instead-of-28-days" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="vacuum and cleaning overhaul lorea переработка пылесоса и уборки из «пыльной работы» плюс исправления. ">
+<div class="who"><h3>Vacuum and Cleaning Overhaul</h3><p class="author">Lorea</p></div>
+<p class="what">Переработка пылесоса и уборки из «Пыльной работы» плюс исправления.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/vacuum-and-cleaning-overhaul-plus-bug-fix" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="better stereos — don’t wake bosselady &amp; tralfaz музыка не будит спящих персонажей. ">
+<div class="who"><h3>Better Stereos — Don’t Wake</h3><p class="author">Bosselady &amp; Tralfaz</p></div>
+<p class="what">Музыка не будит спящих персонажей.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/better-stereos-dont-wake-sims" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="shenanigans: turn on tv claudiasharon &amp; mizoreyukii расширенное включение телевизора. ">
+<div class="who"><h3>SHEnanigans: Turn On TV</h3><p class="author">ClaudiaSharon &amp; MizoreYukii</p></div>
+<p class="what">Расширенное включение телевизора.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/mod-turn-on-tv-70261108" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no festivals in the calendar (+ adventure awaits) puerh фестивали не забивают календарь. ">
+<div class="who"><h3>No Festivals in the Calendar (+ Adventure Awaits)</h3><p class="author">puerh</p></div>
+<p class="what">Фестивали не забивают календарь.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://modthesims.info/d/691241/no-festivals-in-the-calendar.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="kleptos don’t ruin venues waffle клептоманы не растаскивают общественные участки. ">
+<div class="who"><h3>Kleptos Don’t Ruin Venues</h3><p class="author">Waffle</p></div>
+<p class="what">Клептоманы не растаскивают общественные участки.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/89070239" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default relationship satisfaction decay waffle возвращает стандартную скорость падения удовлетворённости отношениями. ">
+<div class="who"><h3>Default Relationship Satisfaction Decay</h3><p class="author">Waffle</p></div>
+<p class="what">Возвращает стандартную скорость падения удовлетворённости отношениями.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/waffle_mix_ins/posts/relationship-it-116122721" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="invite any guests + longer parties more guests weerbesu приглашать можно кого угодно; вечеринки длиннее, гостей больше. ">
+<div class="who"><h3>Invite Any Guests + Longer Parties More Guests</h3><p class="author">weerbesu</p></div>
+<p class="what">Приглашать можно кого угодно; вечеринки длиннее, гостей больше.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://modthesims.info/d/558097/longer-parties-amp-more-guests.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="venues + changes to existing venues zerbu новые типы заведений и переделка правил существующих. ">
+<div class="who"><h3>Venues + Changes to Existing Venues</h3><p class="author">Zerbu</p></div>
+<p class="what">Новые типы заведений и переделка правил существующих.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://zerbu.tumblr.com/post/160347810775/the-sims-4-mod-venue-changes" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="relationship changes from club gatherings zerbu встречи клубов влияют на отношения участников. ">
+<div class="who"><h3>Relationship Changes from Club Gatherings</h3><p class="author">Zerbu</p></div>
+<p class="what">Встречи клубов влияют на отношения участников.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://zerbu.tumblr.com/post/754905019756773376/the-sims-4-mod-relationship-changes-from-club" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="the custom preferences mod zerbu система пользовательских симпатий и антипатий. bcm">
+<div class="who"><h3>The Custom Preferences Mod</h3><p class="author">Zerbu</p></div>
+<p class="what">Система пользовательских симпатий и антипатий.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · BCM</span></div><a class="dl" href="https://zerbu.tumblr.com/post/756892231287422976/the-sims-4-mod-the-custom-preferences-mod" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="helaene preferences plus tralfaz сотни новых симпатий и антипатий поверх custom preferences. оригамика">
+<div class="who"><h3>Helaene Preferences Plus</h3><p class="author">Tralfaz</p></div>
+<p class="what">Сотни новых симпатий и антипатий поверх Custom Preferences.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/helaene-preferences-plus-preference-bomb-revived" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="unhidden traits chingyu скрытые черты ea (левша, полуинопланетянин, эксперт по младенцам, предпочтения погоды и др.) становятся видимыми и выбираемыми. jane moriarty">
+<div class="who"><h3>Unhidden Traits</h3><p class="author">chingyu</p></div>
+<p class="what">Скрытые черты EA (левша, полуинопланетянин, эксперт по младенцам, предпочтения погоды и др.) становятся видимыми и выбираемыми.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jane Moriarty</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/unhidden-traits-in-store" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="more traits in cas kallixer больше слотов черт характера в cas. ">
+<div class="who"><h3>More Traits in CAS</h3><p class="author">Kallixer</p></div>
+<p class="what">Больше слотов черт характера в CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/Kallixer/posts/more-traits-in-169542506" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="genetics overhaul sonozakisisters переработка наследования: гены бабушек и дедушек, тон кожи, без странностей при взрослении. ">
+<div class="who"><h3>Genetics Overhaul</h3><p class="author">SonozakiSisters</p></div>
+<p class="what">Переработка наследования: гены бабушек и дедушек, тон кожи, без странностей при взрослении.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/SonozakiSistersSims4/posts/genetics-main-1-169717542" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="home regions kuttoe персонажи остаются жить в своём регионе, а не переезжают куда попало. ">
+<div class="who"><h3>Home Regions</h3><p class="author">Kuttoe</p></div>
+<p class="what">Персонажи остаются жить в своём регионе, а не переезжают куда попало.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://kuttoe.itch.io/keep-sims-in-home-region" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="group trails anywhere lunarbritney активная ходьба, бег трусцой и групповые походы в любом месте. ">
+<div class="who"><h3>Group Trails Anywhere</h3><p class="author">LunarBritney</p></div>
+<p class="what">Активная ходьба, бег трусцой и групповые походы в любом месте.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/lunarbritney/posts/group-trails-165579778" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="random texts kuttoe случайные сообщения от знакомых персонажей на телефон. ">
+<div class="who"><h3>Random Texts</h3><p class="author">Kuttoe</p></div>
+<p class="what">Случайные сообщения от знакомых персонажей на телефон.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://kuttoe.itch.io/random-texts-and-calls" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="names by hellegon hellegon новый набор имён для генератора. ">
+<div class="who"><h3>Names by Hellegon</h3><p class="author">Hellegon</p></div>
+<p class="what">Новый набор имён для генератора.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/hellegon/posts/384e85c4-f51a-4438-9a30-b6f12d5afa32" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="shorter teens disl подростки ниже взрослых ростом. ">
+<div class="who"><h3>Shorter Teens</h3><p class="author">DISL</p></div>
+<p class="what">Подростки ниже взрослых ростом.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://down-in-simsland.tumblr.com/post/758524334012809216/random-small-mods" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="no outfit change on promote disl предотвращает изменение рабочей одежды при повышении в должности. оригамика">
+<div class="who"><h3>No Outfit Change on Promote</h3><p class="author">DISL</p></div>
+<p class="what">Предотвращает изменение рабочей одежды при повышении в должности.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://down-in-simsland.tumblr.com/tagged/DISLinEnglish" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="social">
+<header class="cat-head"><h2>Общение, отношения и жизнь NPC</h2><span class="count">28</span><p>Живой город: истории района, приглашения, новые разговоры и романтика.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="neighborhood stories expanded (+ full names, culling prevention) kayladot расширенные истории района: больше событий у npc, полные имена в уведомлениях, защита отношений от удаления. оригамика">
+<div class="who"><h3>Neighborhood Stories Expanded (+ Full Names, Culling Prevention)</h3><p class="author">KaylaDot</p></div>
+<p class="what">Расширенные истории района: больше событий у NPC, полные имена в уведомлениях, защита отношений от удаления.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/neighborhood-stories-expanded" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="npc weddings and invites kayladot npc сами женятся и зовут вас на свадьбы. есть">
+<div class="who"><h3>NPC Weddings and Invites</h3><p class="author">KaylaDot</p></div>
+<p class="what">NPC сами женятся и зовут вас на свадьбы.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/npc-weddings-and-invites" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="npc party invites kayladot npc приглашают на вечеринки. katelakk">
+<div class="who"><h3>NPC Party Invites</h3><p class="author">KaylaDot</p></div>
+<p class="what">NPC приглашают на вечеринки.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · KateLakk</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/npc-party-invites" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="better npc birthdays kayladot npc празднуют дни рождения и зовут гостей. mrs_fisher">
+<div class="who"><h3>Better NPC Birthdays</h3><p class="author">KaylaDot</p></div>
+<p class="what">NPC празднуют дни рождения и зовут гостей.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · mrs_fisher</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/better-npc-birthdays" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="wish happy birthday (+ compliment goal override) kayladot взаимодействие «поздравить с днём рождения». katelakk">
+<div class="who"><h3>Wish Happy Birthday (+ Compliment Goal Override)</h3><p class="author">KaylaDot</p></div>
+<p class="what">Взаимодействие «Поздравить с днём рождения».</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · KateLakk</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/wish-happy-birthday" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="after school npc invites kayladot друзья зовут детей погулять после школы. tatisims">
+<div class="who"><h3>After School NPC Invites</h3><p class="author">KaylaDot</p></div>
+<p class="what">Друзья зовут детей погулять после школы.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · TatiSims</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/after-school-npc-invites" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="add or remove sims from situations kayladot добавлять и убирать персонажей из событий на ходу. mrs_fisher">
+<div class="who"><h3>Add or Remove Sims from Situations</h3><p class="author">KaylaDot</p></div>
+<p class="what">Добавлять и убирать персонажей из событий на ходу.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · mrs_fisher</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/add-or-remove-sims-from-situations" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="discuss expanding the family — split interactions kayladot разговор о пополнении семьи разделён на отдельные варианты. jemimma">
+<div class="who"><h3>Discuss Expanding the Family — Split Interactions</h3><p class="author">KaylaDot</p></div>
+<p class="what">Разговор о пополнении семьи разделён на отдельные варианты.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jemimma</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/discuss-expanding-the-family-split-interactions" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="time capsules — more loot kayladot в капсулах времени больше находок. оригамика">
+<div class="who"><h3>Time Capsules — More Loot</h3><p class="author">KaylaDot</p></div>
+<p class="what">В капсулах времени больше находок.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/more-loot-in-time-capsules" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="resize photos kayladot позволяет создавать копии фотографий в маленьком, среднем или большом размере. не снижает качество и не выводит уведомление, просто добавляет фото в инвентарь. ">
+<div class="who"><h3>Resize Photos</h3><p class="author">KaylaDot</p></div>
+<p class="what">Позволяет создавать копии фотографий в маленьком, среднем или большом размере. Не снижает качество и не выводит уведомление, просто добавляет фото в инвентарь.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/resize-photos" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="mood pack mod lumpinou сложные эмоции и состояния: тоска, ревность, одиночество, эмоциональные взаимодействия. оригамика, jane moriarty">
+<div class="who"><h3>Mood Pack Mod</h3><p class="author">Lumpinou</p></div>
+<p class="what">Сложные эмоции и состояния: тоска, ревность, одиночество, эмоциональные взаимодействия.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика, Jane Moriarty</span></div><a class="dl" href="https://www.patreon.com/lumpinou/posts/mod-lumpinous-43759541" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="first impressions (+ intro type matters, post-conversation moodlets) lumpinou первое знакомство задаёт тон отношениям; важна манера представиться. оригамика">
+<div class="who"><h3>First Impressions (+ Intro Type Matters, Post-Conversation Moodlets)</h3><p class="author">Lumpinou</p></div>
+<p class="what">Первое знакомство задаёт тон отношениям; важна манера представиться.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://lumpinoumods.com/2020/12/08/first-impressions-mod/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="do something lumpinou команды для неактивного персонажа без взятия под контроль. natasims">
+<div class="who"><h3>Do Something</h3><p class="author">Lumpinou</p></div>
+<p class="what">Команды для неактивного персонажа без взятия под контроль.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · natasims</span></div><a class="dl" href="https://www.patreon.com/lumpinou/posts/mod-do-something-132219599" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="sim info manager lumpinou сводная информация о персонаже: черты, отношения, история. jane moriarty">
+<div class="who"><h3>Sim Info Manager</h3><p class="author">Lumpinou</p></div>
+<p class="what">Сводная информация о персонаже: черты, отношения, история.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Jane Moriarty</span></div><a class="dl" href="https://lumpinoumods.com/2023/07/24/sim-info-toolbox-view-modify-sim-details-info-sims-4-mod/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="lovestruck: romantic satisfaction only for officially committed relationships lumpinou шкала романтической удовлетворённости из «любви» появляется только у официальных пар. ">
+<div class="who"><h3>Lovestruck: Romantic Satisfaction Only for Officially Committed Relationships</h3><p class="author">Lumpinou</p></div>
+<p class="what">Шкала романтической удовлетворённости из «Любви» появляется только у официальных пар.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/lumpinou/posts/mod-lovestruck-4-109198159" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="immersive social bunny plumlace соцсеть social bunny с живыми постами, подписчиками и реакциями. bcm">
+<div class="who"><h3>Immersive Social Bunny</h3><p class="author">Plumlace</p></div>
+<p class="what">Соцсеть Social Bunny с живыми постами, подписчиками и реакциями.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · BCM</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/immersive-social-bunny" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="more responses: ask about another sim eohlo около 200 ответов в зависимости от отношений, когда спрашиваешь о другом персонаже. ser kisyan">
+<div class="who"><h3>More Responses: Ask About Another Sim</h3><p class="author">Eohlo</p></div>
+<p class="what">Около 200 ответов в зависимости от отношений, когда спрашиваешь о другом персонаже.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/more-responses-ask-about-another-sim" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz s  " data-q="sim control hub dquiet управление любым персонажем: отправить, позвать, назначить действие, управлять ситуациями. semdsh, bziki">
+<div class="who"><h3>Sim Control Hub</h3><p class="author">DQuiet</p></div>
+<p class="what">Управление любым персонажем: отправить, позвать, назначить действие, управлять ситуациями.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-bz">RU · semdsh, Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/sim-control-hub" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="whim overhaul sims4me переработка желаний под каждое дополнение, фазы детства, страхи, предпочтения и образ жизни. ">
+<div class="who"><h3>Whim Overhaul</h3><p class="author">sims4me</p></div>
+<p class="what">Переработка желаний под каждое дополнение, фазы детства, страхи, предпочтения и образ жизни.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/complete-whim-overhaul" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="party invite any sim / playdate any toddler sims4me звать на вечеринку и игровое свидание кого угодно. ">
+<div class="who"><h3>Party Invite Any Sim / Playdate Any Toddler</h3><p class="author">sims4me</p></div>
+<p class="what">Звать на вечеринку и игровое свидание кого угодно.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/party-invite-any-toddler" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="buy more phone sims4me больше покупок через телефон. ">
+<div class="who"><h3>Buy More Phone</h3><p class="author">sims4me</p></div>
+<p class="what">Больше покупок через телефон.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/buy-more-phone" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="kiss-n-grind / wave-n-grind utopya новые романтические анимации поцелуев и танцев. bziki">
+<div class="who"><h3>Kiss-n-Grind / Wave-n-Grind</h3><p class="author">UTOPYA</p></div>
+<p class="what">Новые романтические анимации поцелуев и танцев.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/UTOPYA_cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="passionate affection / passionate gifts / mistletoe kiss utopya страстные нежности, романтичные подарки, поцелуй под омелой. bziki">
+<div class="who"><h3>Passionate Affection / Passionate Gifts / Mistletoe Kiss</h3><p class="author">UTOPYA</p></div>
+<p class="what">Страстные нежности, романтичные подарки, поцелуй под омелой.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/UTOPYA_cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="romantic complaints utopya пожаловаться партнёру на проблемы в отношениях. bziki">
+<div class="who"><h3>Romantic Complaints</h3><p class="author">UTOPYA</p></div>
+<p class="what">Пожаловаться партнёру на проблемы в отношениях.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/UTOPYA_cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="together on a laptop utopya сидеть вдвоём за одним ноутбуком. bziki">
+<div class="who"><h3>Together on a Laptop</h3><p class="author">UTOPYA</p></div>
+<p class="what">Сидеть вдвоём за одним ноутбуком.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/UTOPYA_cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="hit with handbag tatisims огреть обидчика сумочкой. ">
+<div class="who"><h3>Hit with Handbag</h3><p class="author">TatiSims</p></div>
+<p class="what">Огреть обидчика сумочкой.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/hit-with-handbag" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz s  " data-q="steady sit &amp; seat any sim amellce посадить любого персонажа и не дать ему вскочить. bziki">
+<div class="who"><h3>Steady Sit &amp; Seat Any Sim</h3><p class="author">amellce</p></div>
+<p class="what">Посадить любого персонажа и не дать ему вскочить.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/steady-sit-seat-any-sim" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="no stand up to greet (+ cats &amp; dogs) littlemssam персонажи не вскакивают здороваться с каждым гостем и питомцем. ">
+<div class="who"><h3>No Stand Up to Greet (+ Cats &amp; Dogs)</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Персонажи не вскакивают здороваться с каждым гостем и питомцем.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/other-mods-no-standing-up-to-greet" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="simkatu">
+<header class="cat-head"><h2>Анимации и взаимодействия simkatu</h2><span class="count">11</span><p>Отдельный блок: почти всё переведено Bziki.</p></header>
+<ul class="mods"><li class="mod" data-f="bz   " data-q="cry mod simkatu плач в разных вариантах. bziki">
+<div class="who"><h3>Cry Mod</h3><p class="author">simkatu</p></div>
+<p class="what">Плач в разных вариантах.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="endless grief (with autonomy) simkatu долгое горевание по умершим. bziki">
+<div class="who"><h3>Endless Grief (with autonomy)</h3><p class="author">simkatu</p></div>
+<p class="what">Долгое горевание по умершим.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="extended phone calls simkatu длинные разговоры по телефону. bziki">
+<div class="who"><h3>Extended Phone Calls</h3><p class="author">simkatu</p></div>
+<p class="what">Длинные разговоры по телефону.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="group announcements simkatu объявление для всей комнаты. bziki">
+<div class="who"><h3>Group Announcements</h3><p class="author">simkatu</p></div>
+<p class="what">Объявление для всей комнаты.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="hangout and chat on bed / read in bed / nap on the table simkatu болтать и читать в кровати, вздремнуть за столом. bziki">
+<div class="who"><h3>Hangout and Chat on Bed / Read in Bed / Nap on the Table</h3><p class="author">simkatu</p></div>
+<p class="what">Болтать и читать в кровати, вздремнуть за столом.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="cuddle while watching tv simkatu обниматься у телевизора. bziki">
+<div class="who"><h3>Cuddle While Watching TV</h3><p class="author">simkatu</p></div>
+<p class="what">Обниматься у телевизора.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="music listening interactions simkatu новые способы слушать музыку. bziki">
+<div class="who"><h3>Music Listening Interactions</h3><p class="author">simkatu</p></div>
+<p class="what">Новые способы слушать музыку.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="intimate lap kiss / ask to learn how to kiss simkatu поцелуй на коленях; попросить научить целоваться. bziki">
+<div class="who"><h3>Intimate Lap Kiss / Ask to Learn How to Kiss</h3><p class="author">simkatu</p></div>
+<p class="what">Поцелуй на коленях; попросить научить целоваться.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="mirror photo simkatu селфи в зеркале с отдельными позами. bziki">
+<div class="who"><h3>Mirror Photo</h3><p class="author">simkatu</p></div>
+<p class="what">Селфи в зеркале с отдельными позами.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="reading override simkatu новые анимации чтения. ">
+<div class="who"><h3>Reading Override</h3><p class="author">simkatu</p></div>
+<p class="what">Новые анимации чтения.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="painting animation override / change animation type simkatu новые анимации рисования и выбор типа анимации. bziki">
+<div class="who"><h3>Painting Animation Override / Change Animation Type</h3><p class="author">simkatu</p></div>
+<p class="what">Новые анимации рисования и выбор типа анимации.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="family">
+<header class="cat-head"><h2>Дети и семья</h2><span class="count">9</span><p>Младенцы, тоддлеры, школьники и общее семейное время.</p></header>
+<ul class="mods"><li class="mod" data-f="bz   " data-q="kids interactions pack + custom homework simkatu взаимодействия для детей и своя домашка; оверрайд школьного задания. bziki">
+<div class="who"><h3>Kids Interactions Pack + Custom Homework</h3><p class="author">simkatu</p></div>
+<p class="what">Взаимодействия для детей и своя домашка; оверрайд школьного задания.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="hairbrush simkatu расчёсывать волосы детям. bziki">
+<div class="who"><h3>Hairbrush</h3><p class="author">simkatu</p></div>
+<p class="what">Расчёсывать волосы детям.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="infants &amp; toddlers play toys on highchairs &amp; cribs simkatu игрушки в стульчике и кроватке. bziki">
+<div class="who"><h3>Infants &amp; Toddlers Play Toys on Highchairs &amp; Cribs</h3><p class="author">simkatu</p></div>
+<p class="what">Игрушки в стульчике и кроватке.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="nap with child / read &amp; snuggle in toddler bed simkatu вздремнуть с ребёнком, почитать и обняться в детской кровати. bziki">
+<div class="who"><h3>Nap with Child / Read &amp; Snuggle in Toddler Bed</h3><p class="author">simkatu</p></div>
+<p class="what">Вздремнуть с ребёнком, почитать и обняться в детской кровати.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="functional mini easels simkatu функциональные мини-мольберты и замена анимации рисования. bziki">
+<div class="who"><h3>Functional Mini Easels</h3><p class="author">simkatu</p></div>
+<p class="what">Функциональные мини-мольберты и замена анимации рисования.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="chill in bed meraki отдых в кровати: лежать, болтать, пользоваться телефоном. bziki">
+<div class="who"><h3>Chill in Bed</h3><p class="author">Meraki</p></div>
+<p class="what">Отдых в кровати: лежать, болтать, пользоваться телефоном.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/chill-in-bed-mod" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="kids jump on the bed meraki дети и тоддлеры прыгают на кровати. ">
+<div class="who"><h3>Kids Jump on the Bed</h3><p class="author">Meraki</p></div>
+<p class="what">Дети и тоддлеры прыгают на кровати.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/kids-can-jump-on-the-bed" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="swing set overhaul (+ bg swing set) meraki новые способы качаться на качелях. ">
+<div class="who"><h3>Swing Set Overhaul (+ BG Swing Set)</h3><p class="author">Meraki</p></div>
+<p class="what">Новые способы качаться на качелях.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.patreon.com/Merakiscc/posts/swingset-164255672" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="simu: academic life midnitetech глубже университетская жизнь: учёба, расписание, академические события. jemimma">
+<div class="who"><h3>SimU: Academic Life</h3><p class="author">midnitetech</p></div>
+<p class="what">Глубже университетская жизнь: учёба, расписание, академические события.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jemimma</span></div><a class="dl" href="https://www.patreon.com/posts/148619730" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="food">
+<header class="cat-head"><h2>Еда и напитки</h2><span class="count">12</span><p>Готовка, рецепты, продукты и алкоголь.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="srslysims cooking overhaul (scco) srslysims готовка из ингредиентов, кулинарные книги, походы по магазинам, крафт и пак модулей под каждое дополнение. оригамика, jane moriarty">
+<div class="who"><h3>SrslySims Cooking Overhaul (SCCO)</h3><p class="author">SrslySims</p></div>
+<p class="what">Готовка из ингредиентов, кулинарные книги, походы по магазинам, крафт и пак модулей под каждое дополнение.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика, Jane Moriarty</span></div><a class="dl" href="https://www.patreon.com/cw/SrslySims/home" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="srslysims custom menus cooking srslysims собственные меню для готовки. оригамика">
+<div class="who"><h3>SrslySims Custom Menus Cooking</h3><p class="author">SrslySims</p></div>
+<p class="what">Собственные меню для готовки.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://www.patreon.com/cw/SrslySims/home" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="tianasims cookbook tianasims огромная кулинарная книга: завтраки, выпечка, десерты, консервация, нектары, корм для питомцев. bcm">
+<div class="who"><h3>TianaSims Cookbook</h3><p class="author">TianaSims</p></div>
+<p class="what">Огромная кулинарная книга: завтраки, выпечка, десерты, консервация, нектары, корм для питомцев.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · BCM</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/tianasims-cookbook" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="basemental alcohol basemental алкоголь, опьянение, бары, похмелье и зависимость. esqdumper">
+<div class="who"><h3>Basemental Alcohol</h3><p class="author">Basemental</p></div>
+<p class="what">Алкоголь, опьянение, бары, похмелье и зависимость.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · esqdumper</span></div><a class="dl" href="https://basementalcc.com" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="call to meal littlemssam позвать всех к столу. ">
+<div class="who"><h3>Call to Meal</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Позвать всех к столу.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/choose-who-you-call-to-meal" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no auto food grab after cooking littlemssam персонажи не хватают тарелку сразу после готовки. ">
+<div class="who"><h3>No Auto Food Grab After Cooking</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Персонажи не хватают тарелку сразу после готовки.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/no-auto-food-grab-after-cooking" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="auto drink when eating / choose leftover littlemssam напиток к еде; выбор остатков через меню. ">
+<div class="who"><h3>Auto Drink When Eating / Choose Leftover</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Напиток к еде; выбор остатков через меню.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/rsm-auto-grab-drink-when-eating" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="improved drink trays (+ no free drinks) littlemssam улучшенные подносы с напитками. ">
+<div class="who"><h3>Improved Drink Trays (+ No Free Drinks)</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Улучшенные подносы с напитками.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/improved-spa-day-tablet" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="normal cooking actions / normal eating animations halapeco спокойные анимации готовки и еды вместо выпендрёжных трюков. ">
+<div class="who"><h3>Normal Cooking Actions / Normal Eating Animations</h3><p class="author">halapeco</p></div>
+<p class="what">Спокойные анимации готовки и еды вместо выпендрёжных трюков.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://halapeco.web.fc2.com/mod/index.html" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="custom food interactions icemunmun служебная основа, без неё еда icemunmun не работает. оригамика">
+<div class="who"><h3>Custom Food Interactions</h3><p class="author">icemunmun</p></div>
+<p class="what">Служебная основа, без неё еда icemunmun не работает.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://modthesims.info/d/571010" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="custom drink interactions icemunmun служебная основа для напитков, без неё напитки icemunmun не работают. оригамика">
+<div class="who"><h3>Custom Drink Interactions</h3><p class="author">icemunmun</p></div>
+<p class="what">Служебная основа для напитков, без неё напитки icemunmun не работают.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://modthesims.info/d/585189/custom-drink-interactions-update-25th-october-2025.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="andrew craftables andrew скриптовая основа для крафтовых предметов. ">
+<div class="who"><h3>Andrew Craftables</h3><p class="author">Andrew</p></div>
+<p class="what">Скриптовая основа для крафтовых предметов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://sims4studio.com/post/72754/thread" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="vamp">
+<header class="cat-head"><h2>Вампиры и оккульты</h2><span class="count">21</span><p>Плазма, кровь, силы и романтика бессмертных.</p></header>
+<ul class="mods"><li class="mod" data-f="bz s  " data-q="immersive vampires zero вампир может признаться, кто он, или показать клыки. окружающие реагируют по-разному: принимают, не верят, пугаются, предупреждают других, обвиняют, лезут в драку. можно спросить, что человек думает о вампирах, успокоить его, поговорить начистоту. есть ветка для семьи: принять родственника-вампира или отвергнуть. появляются охотники на вампиров и черты «без ума от вампиров» и «боится вампиров». версия обновлена bziki для личного пользования. bziki">
+<div class="who"><h3>Immersive Vampires</h3><p class="author">Zero</p></div>
+<p class="what">Вампир может признаться, кто он, или показать клыки. Окружающие реагируют по-разному: принимают, не верят, пугаются, предупреждают других, обвиняют, лезут в драку. Можно спросить, что человек думает о вампирах, успокоить его, поговорить начистоту. Есть ветка для семьи: принять родственника-вампира или отвергнуть. Появляются охотники на вампиров и черты «Без ума от вампиров» и «Боится вампиров». Версия обновлена Bziki для личного пользования.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://modthesims.info/d/631400/immersive-vampires.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="vampire power tweaks + vampire mods cheats zero днём энергия вампиров тает (без «защиты от солнца» примерно за 8 игровых часов, с ней примерно за 12), ночью восстанавливается быстрее. днём на улице способности и питьё не работают, кроме заклинания «снять солнечную печать». дети-вампиры не любят солнце. bziki">
+<div class="who"><h3>Vampire Power Tweaks + Vampire Mods Cheats</h3><p class="author">Zero</p></div>
+<p class="what">Днём энергия вампиров тает (без «защиты от солнца» примерно за 8 игровых часов, с ней примерно за 12), ночью восстанавливается быстрее. Днём на улице способности и питьё не работают, кроме заклинания «Снять солнечную печать». Дети-вампиры не любят солнце.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/zer0_Mods_/posts/vampires-mods-73886782" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="more drinks for vampires (+ glass blood dine out) zero плазменные напитки у бара и бокал крови для «в ресторане». rayxor">
+<div class="who"><h3>More Drinks for Vampires (+ Glass Blood Dine Out)</h3><p class="author">Zero</p></div>
+<p class="what">Плазменные напитки у бара и бокал крови для «В ресторане».</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · rayxor</span></div><a class="dl" href="https://www.patreon.com/zer0_Mods_/posts/more-drinks-for-34781141" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="occults activities (no overrides) zero занятия через телефон: охота и сбор клана для вампиров, лес, царство и ковен для ведьм. rayxor">
+<div class="who"><h3>Occults Activities (No Overrides)</h3><p class="author">Zero</p></div>
+<p class="what">Занятия через телефон: охота и сбор клана для вампиров, лес, Царство и ковен для ведьм.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · rayxor</span></div><a class="dl" href="https://www.patreon.com/posts/42007324" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="new vampire powers (+ played npcs have buffs) littlemssam вампир может есть обычную еду, получает временное отражение и защиту от солнца. ">
+<div class="who"><h3>New Vampire Powers (+ Played NPCs Have Buffs)</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Вампир может есть обычную еду, получает временное отражение и защиту от солнца.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/vampire-powers-be-able-to-eat-human-food-enable" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="plasma pack from plasma fruit littlemssam делать пакеты плазмы из плазменных фруктов. ">
+<div class="who"><h3>Plasma Pack from Plasma Fruit</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Делать пакеты плазмы из плазменных фруктов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/plasma-packs-from-plasma-fruits" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="custom occult perks twelfthdoctor1 свои перки для оккультов. ser kisyan">
+<div class="who"><h3>Custom Occult Perks</h3><p class="author">TwelfthDoctor1</p></div>
+<p class="what">Свои перки для оккультов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://modthesims.info/d/648143/custom-occult-powers.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="twice bitten thatssojordy эмоциональные реакции на укус у укушенного и у вампира, по нарастающей. jane moriarty">
+<div class="who"><h3>Twice Bitten</h3><p class="author">thatssojordy</p></div>
+<p class="what">Эмоциональные реакции на укус у укушенного и у вампира, по нарастающей.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jane Moriarty</span></div><a class="dl" href="https://www.patreon.com/posts/twice-bitten-mod-113565327" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="vampires revamped sweetsimmer социальные взаимодействия жажды: комплимент шее, вопрос о здоровье сердца, «у тебя громко бьётся сердце», попытка укусить, флирт-кормление, кормление с одурманиванием, смертельное осушение. ser kisyan">
+<div class="who"><h3>Vampires Revamped</h3><p class="author">SweetSimmer</p></div>
+<p class="what">Социальные взаимодействия жажды: комплимент шее, вопрос о здоровье сердца, «у тебя громко бьётся сердце», попытка укусить, флирт-кормление, кормление с одурманиванием, смертельное осушение.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://www.patreon.com/SweetSimmer/posts/vampires-vampire-77998337" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="vampire intenseity sweetsimmer люди напрягаются рядом с вампирами, особенно с вампиром в истинном облике. ser kisyan">
+<div class="who"><h3>Vampire InTenseity</h3><p class="author">SweetSimmer</p></div>
+<p class="what">Люди напрягаются рядом с вампирами, особенно с вампиром в истинном облике.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://www.patreon.com/SweetSimmer" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="vamperic love marks sweetsimmer социальное взаимодействие «вампирский засос» и след от укуса в редакторе персонажа. ser kisyan">
+<div class="who"><h3>Vamperic Love Marks</h3><p class="author">SweetSimmer</p></div>
+<p class="what">Социальное взаимодействие «вампирский засос» и след от укуса в редакторе персонажа.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://www.patreon.com/SweetSimmer" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="plasma farmer v2 (ea) + vampire blood laureli новые действия: «взять кровь» у персонажа или у себя (1 пакет плазмы) и «осушить» (10 пакетов, персонаж умирает). кровь вампира даёт вампирский пакет: продать за 10 000 или дать выпить человеку, и тот сразу обратится. rayxor">
+<div class="who"><h3>Plasma Farmer V2 (EA) + Vampire Blood</h3><p class="author">Laureli</p></div>
+<p class="what">Новые действия: «Взять кровь» у персонажа или у себя (1 пакет плазмы) и «Осушить» (10 пакетов, персонаж умирает). Кровь вампира даёт вампирский пакет: продать за 10 000 или дать выпить человеку, и тот сразу обратится.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · rayxor</span></div><a class="dl" href="https://modthesims.info/d/676088/blood-bank.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="sanguisine (blood cuisine) laureli действие у холодильника «налить кровь»: миски крови и графины на 1, 4 или 8 порций из пакетов плазмы. их могут пить даже вампиры с атрофированным желудком. rayxor">
+<div class="who"><h3>Sanguisine (Blood Cuisine)</h3><p class="author">Laureli</p></div>
+<p class="what">Действие у холодильника «Налить кровь»: миски крови и графины на 1, 4 или 8 порций из пакетов плазмы. Их могут пить даже вампиры с атрофированным желудком.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · rayxor</span></div><a class="dl" href="https://modthesims.info/d/678218/sanguisine-blood-cuisine.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="blood nectar laureli бутылка выдержанной крови для винного погреба. нужно «конное ранчо». bziki">
+<div class="who"><h3>Blood Nectar</h3><p class="author">Laureli</p></div>
+<p class="what">Бутылка выдержанной крови для винного погреба. Нужно «Конное ранчо».</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://modthesims.info/d/678218/sanguisine-blood-cuisine.html" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="plasma recipes + crafting enablers catdevpete большой набор плазменных версий обычной еды и напитков: блюда из «в ресторане» и «свадебных историй», бабл-ти, ранчо-нектар, шипучки, сэндвич с сыром. kitty">
+<div class="who"><h3>Plasma Recipes + Crafting Enablers</h3><p class="author">catdevpete</p></div>
+<p class="what">Большой набор плазменных версий обычной еды и напитков: блюда из «В ресторане» и «Свадебных историй», бабл-ти, ранчо-нектар, шипучки, сэндвич с сыром.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Kitty</span></div><a class="dl" href="https://www.patreon.com/posts/113741447" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="occult recipes icemunmun оккультные блюда и чаи: тыквенный крем, ризотто «красный граф», трансильванский суп, стейк лунного охотника, плазменный, мандрагоровый и лунный чаи, чай из водорослей, «чернильные» водоросли. оригамика">
+<div class="who"><h3>Occult Recipes</h3><p class="author">icemunmun</p></div>
+<p class="what">Оккультные блюда и чаи: тыквенный крем, ризотто «Красный граф», трансильванский суп, стейк лунного охотника, плазменный, мандрагоровый и лунный чаи, чай из водорослей, «чернильные» водоросли.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://modthesims.info/m/4590936" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="srslysims plasma recipes srslysims плазменные рецепты под scco: чизкейк, печенье, пельмени, макаруны, пудинг, пиво «plasmatica», латте, рамен, мармелад, сэндвич с арахисовой пастой и два вида мороженого. jane moriarty">
+<div class="who"><h3>SrslySims Plasma Recipes</h3><p class="author">SrslySims</p></div>
+<p class="what">Плазменные рецепты под SCCO: чизкейк, печенье, пельмени, макаруны, пудинг, пиво «Plasmatica», латте, рамен, мармелад, сэндвич с арахисовой пастой и два вида мороженого.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Jane Moriarty</span></div><a class="dl" href="https://www.patreon.com/cw/SrslySims/home" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="deathless love avathepit вечный возлюбленный, с которым нельзя расстаться, смерть от нападения вампира и цепочка мести. mrs_fisher">
+<div class="who"><h3>Deathless Love</h3><p class="author">AvathePit</p></div>
+<p class="what">Вечный возлюбленный, с которым нельзя расстаться, смерть от нападения вампира и цепочка мести.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · mrs_fisher</span></div><a class="dl" href="https://avathepit.itch.io/the-sims-4-deathlesslove-mod" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="holiday traditions: vampire &amp; spellcaster missyhissy праздничные традиции «выпить», «использовать способности», «колдовать», «магическая дуэль», «котёл». rano">
+<div class="who"><h3>Holiday Traditions: Vampire &amp; Spellcaster</h3><p class="author">MissyHissy</p></div>
+<p class="what">Праздничные традиции «Выпить», «Использовать способности», «Колдовать», «Магическая дуэль», «Котёл».</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · Rano</span></div><a class="dl" href="https://sims4dailyplumbob.game.blog/mods-cc/holiday-traditions/occult-traditions/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="occult toddler quirks natethel0ser причуды у малышей-оккультов. bcm">
+<div class="who"><h3>Occult Toddler Quirks</h3><p class="author">NateTheL0ser</p></div>
+<p class="what">Причуды у малышей-оккультов.</p>
+<div class="meta"><div class="tags"><span class="tag tag-ru">RU · BCM</span></div><a class="dl" href="https://www.patreon.com/posts/68072219" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz   " data-q="forgotten hollow revamped tralfaz переработка мира форготтен холлоу. bziki">
+<div class="who"><h3>Forgotten Hollow Revamped</h3><p class="author">Tralfaz</p></div>
+<p class="what">Переработка мира Форготтен Холлоу.</p>
+<div class="meta"><div class="tags"><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/forgotten-hollow-revamped" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="objects">
+<header class="cat-head"><h2>Функциональные предметы</h2><span class="count">27</span><p>Объекты из режима покупки, которые что-то делают.</p></header>
+<ul class="mods"><li class="mod" data-f="  o " data-q="llamazon marketplace ravasheen онлайн-магазин с доставкой. jemimma">
+<div class="who"><h3>Llamazon Marketplace</h3><p class="author">Ravasheen</p></div>
+<p class="what">Онлайн-магазин с доставкой.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-ru">RU · Jemimma</span></div><a class="dl" href="https://ravasheen.com/download/llamazon-marketplace/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="photographic memory ravasheen фото из игры превращаются в предметы и воспоминания. ser kisyan">
+<div class="who"><h3>Photographic Memory</h3><p class="author">Ravasheen</p></div>
+<p class="what">Фото из игры превращаются в предметы и воспоминания.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-ru">RU · Ser Kisyan</span></div><a class="dl" href="https://ravasheen.com/download/photographic-memory-2-0/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="functional photo frames peanutbutterjelly02 функциональные фоторамки: свои фото в рамках, пробковые доски, гирлянды с прищепками. ">
+<div class="who"><h3>Functional Photo Frames</h3><p class="author">peanutbutterjelly02</p></div>
+<p class="what">Функциональные фоторамки: свои фото в рамках, пробковые доски, гирлянды с прищепками.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://www.tumblr.com/peanutbutterjelly02/637982060111364096/functional-photo-frames-v2-it-is-here-and-it-is" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="iso love photos camera ravasheen камера для романтических фото. оригамика">
+<div class="who"><h3>ISO Love Photos Camera</h3><p class="author">Ravasheen</p></div>
+<p class="what">Камера для романтических фото.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-ru">RU · Оригамика</span></div><a class="dl" href="https://ravasheen.com/download/iso-love-photos-full-control-camera/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="in your safe — piggy banks ravasheen копилки, куда можно откладывать деньги. bziki">
+<div class="who"><h3>In Your Safe — Piggy Banks</h3><p class="author">Ravasheen</p></div>
+<p class="what">Копилки, куда можно откладывать деньги.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://ravasheen.com/download/in-your-safe-piggy-banks/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no snap curtain slot ravasheen шторы без привязки к слотам. ">
+<div class="who"><h3>No Snap Curtain Slot</h3><p class="author">Ravasheen</p></div>
+<p class="what">Шторы без привязки к слотам.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://ravasheen.com/download/no-curtain-snapping/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="appliance coordination unit mk.i simsdaomengyou (dao) countertop appliance expander: позволяет ставить больше техники на столешницу и пользоваться ею. bcm">
+<div class="who"><h3>Appliance Coordination Unit Mk.I</h3><p class="author">SimsDaomengyou (DAO)</p></div>
+<p class="what">Countertop Appliance Expander: позволяет ставить больше техники на столешницу и пользоваться ею.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-ru">RU · BCM</span></div><a class="dl" href="https://www.curseforge.com/sims4/build-buy/countertop-appliance-expander" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="homestation smart home panel nerdydoll панель умного дома: свет, техника, режимы. bziki">
+<div class="who"><h3>HomeStation Smart Home Panel</h3><p class="author">NerdyDoll</p></div>
+<p class="what">Панель умного дома: свет, техника, режимы.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/home-station-your-smart-home-companion" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="lux lights mod kit + cozy lights arnie настраиваемые источники света. semdsh">
+<div class="who"><h3>LUX Lights Mod Kit + Cozy Lights</h3><p class="author">Arnie</p></div>
+<p class="what">Настраиваемые источники света.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-ru">RU · semdsh</span></div><a class="dl" href="https://www.patreon.com/posts/lux-lights-mod-2-113745305" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="interactive placemats cherisi сервировочные салфетки, на которые персонаж ставит еду. bziki">
+<div class="who"><h3>Interactive Placemats</h3><p class="author">CHERISI</p></div>
+<p class="what">Сервировочные салфетки, на которые персонаж ставит еду.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/interactive-placemats-gameplay-mod" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="claim objects cheat cherisi сделать объект личным через чит. ">
+<div class="who"><h3>Claim Objects Cheat</h3><p class="author">CHERISI</p></div>
+<p class="what">Сделать объект личным через чит.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/Cherisi/posts/mini-mod-11-167061613" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="personal objects littlemssam назначать владельцев кроватям, стульям, технике, ванной; чужие не трогают. ">
+<div class="who"><h3>Personal Objects</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Назначать владельцев кроватям, стульям, технике, ванной; чужие не трогают.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/personal-objects-computer-tablets-more" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="unlock door for chosen sims littlemssam дверь открыта только выбранным персонажам. ">
+<div class="who"><h3>Unlock Door for Chosen Sims</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Дверь открыта только выбранным персонажам.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/unlock-lock-doors-for-chosen-sims" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="automatic thermostat littlemssam термостат сам переключается по сезону и времени суток. ">
+<div class="who"><h3>Automatic Thermostat</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Термостат сам переключается по сезону и времени суток.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/automatic-thermostat-seasons" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="eco dishwasher littlemssam экономичный режим посудомойки. ">
+<div class="who"><h3>Eco Dishwasher</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Экономичный режим посудомойки.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/eco-dishwasher" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="stop it lights littlemssam свет не включается и не мигает без причины. ">
+<div class="who"><h3>Stop It Lights</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Свет не включается и не мигает без причины.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/stop-it-lights" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="buy better mattress littlemssam купить кровати новый матрас для лучшего сна. ">
+<div class="who"><h3>Buy Better Mattress</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Купить кровати новый матрас для лучшего сна.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/buy-a-better-mattress-better-energy-comfort-on" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="sleep all night littlemssam персонажи спят до утра и не вскакивают среди ночи. ">
+<div class="who"><h3>Sleep All Night</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Персонажи спят до утра и не вскакивают среди ночи.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/sleep-all-night" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="transfer inventory littlemssam перенос инвентаря между персонажами и объектами. ">
+<div class="who"><h3>Transfer Inventory</h3><p class="author">LittleMsSam</p></div>
+<p class="what">Перенос инвентаря между персонажами и объектами.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/transfer-inventory" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="seats for infants &amp; toddlers simkatu посадить малыша на кровать, диван, стол, комод, тумбу. ">
+<div class="who"><h3>Seats for Infants &amp; Toddlers</h3><p class="author">simkatu</p></div>
+<p class="what">Посадить малыша на кровать, диван, стол, комод, тумбу.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="functional claw machine / high striker / smack gnome cepzid (в файлах — zulf) аркадные автоматы: хватайка, силомер, «бей гнома». ">
+<div class="who"><h3>Functional Claw Machine / High Striker / Smack Gnome</h3><p class="author">Cepzid (в файлах — Zulf)</p></div>
+<p class="what">Аркадные автоматы: хватайка, силомер, «бей гнома».</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://cepzid.itch.io" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="bathroom kits become functional cepzid (в файлах — zulf) декор ванных китов становится рабочим. ">
+<div class="who"><h3>Bathroom Kits Become Functional</h3><p class="author">Cepzid (в файлах — Zulf)</p></div>
+<p class="what">Декор ванных китов становится рабочим.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://www.patreon.com/cepzid/posts/sims-4-bathroom-77632867" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="game coffee table &amp; velvet floor pillow hiole игровой стол и подушка для сидения на полу. ">
+<div class="who"><h3>Game Coffee Table &amp; Velvet Floor Pillow</h3><p class="author">Hiole</p></div>
+<p class="what">Игровой стол и подушка для сидения на полу.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://www.patreon.com/Hiole/posts/functional-game-113637801" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="bathrobe hekali работающий банный халат. ">
+<div class="who"><h3>Bathrobe</h3><p class="author">hekali</p></div>
+<p class="what">Работающий банный халат.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://hekali.tumblr.com/post/686338309999476736/bathrobe-hooker" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="  o " data-q="table settings around the sims 4 сервировка: приборы, палочки, тарелки. ">
+<div class="who"><h3>Table Settings</h3><p class="author">Around the Sims 4</p></div>
+<p class="what">Сервировка: приборы, палочки, тарелки.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span></div><a class="dl" href="https://aroundthesims4.com/objects/room_dining_07.shtml" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="bz  o " data-q="twister / volleyball / pool table utopya твистер, волейбольная площадка с сеткой, бильярд. bziki">
+<div class="who"><h3>Twister / Volleyball / Pool Table</h3><p class="author">UTOPYA</p></div>
+<p class="what">Твистер, волейбольная площадка с сеткой, бильярд.</p>
+<div class="meta"><div class="tags"><span class="tag tag-o" title="Функциональный предмет в режиме покупки">предмет</span><span class="tag tag-bz">RU · Bziki</span></div><a class="dl" href="https://www.patreon.com/UTOPYA_cc" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="brighter walls and foundations lotharihoe светлее стены и фундаменты. ">
+<div class="who"><h3>Brighter Walls and Foundations</h3><p class="author">lotharihoe</p></div>
+<p class="what">Светлее стены и фундаменты.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/brighter-walls-and-foundations" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="pose">
+<header class="cat-head"><h2>Позы, свет и съёмка</h2><span class="count">17</span><p>Инструменты для скриншотов, лора и CAS-съёмки.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="andrew’s pose player andrew классический проигрыватель поз. ">
+<div class="who"><h3>Andrew’s Pose Player</h3><p class="author">Andrew</p></div>
+<p class="what">Классический проигрыватель поз.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://sims4studioofficial.tumblr.com/post/128611474741/sims-4-pose-pack-player" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="pose alignment interactions john baccarat точное выравнивание поз для ww и pose player. ">
+<div class="who"><h3>Pose Alignment Interactions</h3><p class="author">John Baccarat</p></div>
+<p class="what">Точное выравнивание поз для WW и Pose Player.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://www.curseforge.com/sims4/mods/pose-alignment-interactions" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="teleport sims interactions john baccarat переместить персонажа в нужную точку. ">
+<div class="who"><h3>Teleport Sims Interactions</h3><p class="author">John Baccarat</p></div>
+<p class="what">Переместить персонажа в нужную точку.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://modthesims.info/d/692011/teleport-sims-interactions.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f=" s  " data-q="teleport any sim scumbumbo классический телепорт. ">
+<div class="who"><h3>Teleport Any Sim</h3><p class="author">Scumbumbo</p></div>
+<p class="what">Классический телепорт.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span></div><a class="dl" href="https://scumbumbomods.com/#/teleport-any-sim/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="controlled position + hands close-up northern siberia winds управление позой персонажа в cas и крупный план рук. ">
+<div class="who"><h3>Controlled Position + Hands Close-Up</h3><p class="author">Northern Siberia Winds</p></div>
+<p class="what">Управление позой персонажа в CAS и крупный план рук.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/northernsiberiawinds/posts/controlled-mod-103628223" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="even better in-game lighting northern siberia winds улучшенное освещение в игре, тёмный вариант. ">
+<div class="who"><h3>Even Better In-Game Lighting</h3><p class="author">Northern Siberia Winds</p></div>
+<p class="what">Улучшенное освещение в игре, тёмный вариант.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/northernsiberiawinds/posts/even-better-in-107494052" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="shine cas lighting northern siberia winds освещение cas с красной контровой подсветкой. ">
+<div class="who"><h3>Shine CAS Lighting</h3><p class="author">Northern Siberia Winds</p></div>
+<p class="what">Освещение CAS с красной контровой подсветкой.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/northernsiberiawinds/posts/little-cas-add-108107397" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="standstill blackpanda персонаж стоит неподвижно в cas. ">
+<div class="who"><h3>StandStill</h3><p class="author">Blackpanda</p></div>
+<p class="what">Персонаж стоит неподвижно в CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.tumblr.com/blackpanda-ts4/729262901039349760/stand-still-in-cas-v-10-by-blackpanda" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="triple mirror bg vyxated фон cas с тремя зеркалами. ">
+<div class="who"><h3>Triple Mirror BG</h3><p class="author">vyxated</p></div>
+<p class="what">Фон CAS с тремя зеркалами.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.tumblr.com/vyxated/719938237764878336/a-cas-background-with-not-one-not-2-but-3" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="cas close-up helgatisha нейтральное выражение лица у персонажей в cas при приближении. ">
+<div class="who"><h3>CAS Close-Up</h3><p class="author">helgatisha</p></div>
+<p class="what">Нейтральное выражение лица у персонажей в CAS при приближении.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/helgatisha/posts/cas-close-up-86885442" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="more cas columns weerbesu больше колонок в каталоге cas. ">
+<div class="who"><h3>More CAS Columns</h3><p class="author">weerbesu</p></div>
+<p class="what">Больше колонок в каталоге CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/weerbesu/posts/more-columns-in-27751117" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="cas ui hide tinisims прячет интерфейс cas для чистых скриншотов. ">
+<div class="who"><h3>CAS UI Hide</h3><p class="author">TINISIMS</p></div>
+<p class="what">Прячет интерфейс CAS для чистых скриншотов.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/hide-cas-ui-mini-mod-by-tinisims" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no blu darker luumia убирает голубой оттенок освещения. ">
+<div class="who"><h3>No Blu Darker</h3><p class="author">LUUMIA</p></div>
+<p class="what">Убирает голубой оттенок освещения.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://luumiasims.com/post/176043227929/its-been-well-over-a-year-since-noblu-v1-came-out" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="adjusted camera / angled pose (household panel) simplyanjuta лучше камера и поза в панели семьи. ">
+<div class="who"><h3>Adjusted Camera / Angled Pose (Household Panel)</h3><p class="author">SimplyAnjuta</p></div>
+<p class="what">Лучше камера и поза в панели семьи.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://simplyanjuta.tumblr.com/post/727261103465349120/adjusted-camera-settings-for-household-panel" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="secondary poses (pets fixed) simplyanjuta вторичные позы в cas с исправленными позами питомцев. ">
+<div class="who"><h3>Secondary Poses (Pets Fixed)</h3><p class="author">SimplyAnjuta</p></div>
+<p class="what">Вторичные позы в CAS с исправленными позами питомцев.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.tumblr.com/simplyanjuta/653627649501118464/mod-for-secondary-poses-broken-pet-poses-fixed" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="starting sims simslab | коллеги по sims стартовые персонажи в cas. ">
+<div class="who"><h3>Starting Sims</h3><p class="author">SimsLab | Коллеги по Sims</p></div>
+<p class="what">Стартовые персонажи в CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://t.me/TheSimsLab/1040" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="evolventa linesmie шрифт evolventa для интерфейса игры (специально для bziki). ">
+<div class="who"><h3>Evolventa</h3><p class="author">Linesmie</p></div>
+<p class="what">Шрифт Evolventa для интерфейса игры (специально для Bziki).</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/linesmie" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="cas">
+<header class="cat-head"><h2>CAS Default</h2><span class="count">20</span><p>Замены стандартных элементов CAS: тела, глаза, зубы, брови, скины, анлоки.</p></header>
+<ul class="mods"><li class="mod" data-f="   " data-q="casunlocks crilender открывает в cas скрытые категории и вещи для всех возрастов, полов и оккультов; аддоны для архетипов, фей, лошадей, русалок и оборотней. ">
+<div class="who"><h3>CASUnlocks</h3><p class="author">Crilender</p></div>
+<p class="what">Открывает в CAS скрытые категории и вещи для всех возрастов, полов и оккультов; аддоны для архетипов, фей, лошадей, русалок и оборотней.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/crilender/posts/casunlocks-v1-9h-34827823" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default underwear (eric, passion) caiocc замена стандартного нижнего белья. ">
+<div class="who"><h3>Default Underwear (Eric, Passion)</h3><p class="author">Caiocc</p></div>
+<p class="what">Замена стандартного нижнего белья.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/caiocc/posts/default-for-my-99628299" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default tops &amp; bottoms magic-bot дефолтные торс и ноги для всех возрастов. ">
+<div class="who"><h3>Default Tops &amp; Bottoms</h3><p class="author">magic-bot</p></div>
+<p class="what">Дефолтные торс и ноги для всех возрастов.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/magicbot/posts/feet-7v-upd-03-50798612" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default maxis hq feet magic-bot hq-ступни maxis для всех возрастов, от младенцев до взрослых. ">
+<div class="who"><h3>Default Maxis HQ Feet</h3><p class="author">magic-bot</p></div>
+<p class="what">HQ-ступни Maxis для всех возрастов, от младенцев до взрослых.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/default-maxis-hq-99375814" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="ws teeth (все возрасты + дополнения) wightspider дефолтные зубы для всех возрастов, вампиров и дополнений. ">
+<div class="who"><h3>WS Teeth (все возрасты + дополнения)</h3><p class="author">WightSpider</p></div>
+<p class="what">Дефолтные зубы для всех возрастов, вампиров и дополнений.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/create-a-sim/teeths-default" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="ws eyebrows all ages wightspider ретекстур стандартных бровей. ">
+<div class="who"><h3>WS Eyebrows All Ages</h3><p class="author">WightSpider</p></div>
+<p class="what">Ретекстур стандартных бровей.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/WightSpider07/posts/eyebrow-94262974" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="remove ea lashes for all ir7770 убирает встроенные ресницы ea у всех персонажей. ">
+<div class="who"><h3>Remove EA Lashes for All</h3><p class="author">ir7770</p></div>
+<p class="what">Убирает встроенные ресницы EA у всех персонажей.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/Ir_7770/posts/ir7770-1-115-100371200" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="mercuria default skin llumisims дефолтный скин в стиле maxis match. ">
+<div class="who"><h3>Mercuria Default Skin</h3><p class="author">Llumisims</p></div>
+<p class="what">Дефолтный скин в стиле Maxis Match.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/create-a-sim/mercuria-edit-default-skin" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default eyes + heterochromia nunamoona дефолтные глаза в стиле maxis match и вариант с гетерохромией. ">
+<div class="who"><h3>Default Eyes + Heterochromia</h3><p class="author">nunamoona</p></div>
+<p class="what">Дефолтные глаза в стиле Maxis Match и вариант с гетерохромией.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://nunamoona.tumblr.com/post/781841289479143424/maxis-match-eyes-default-and-facepaint-ver-18" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="ffangs — default eyes for vampires blackpanda (правка squea) дефолтные глаза для вампиров. ">
+<div class="who"><h3>FFANGS — Default Eyes for Vampires</h3><p class="author">Blackpanda (правка Squea)</p></div>
+<p class="what">Дефолтные глаза для вампиров.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://blackpanda-ts4.tumblr.com/post/733776142111227904/ffangs-default-eyes-for-vampires" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="soulmate eyes someone-elsa дефолтные глаза для оккультов (кроме вампиров), питомцев и животных. ">
+<div class="who"><h3>Soulmate Eyes</h3><p class="author">someone-elsa</p></div>
+<p class="what">Дефолтные глаза для оккультов (кроме вампиров), питомцев и животных.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/collection/43372?view=expanded" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="horse coat default replacement nesurii дефолтная текстура шерсти лошадей в стиле maxis match. ">
+<div class="who"><h3>Horse Coat Default Replacement</h3><p class="author">NESURII</p></div>
+<p class="what">Дефолтная текстура шерсти лошадей в стиле Maxis Match.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/nesurii/posts/default-maxis-86888687" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="realistic head &amp; body override coyo оверрайд головы и тела. ">
+<div class="who"><h3>Realistic Head &amp; Body Override</h3><p class="author">COYO</p></div>
+<p class="what">Оверрайд головы и тела.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/coyoteeths-head-89740932" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no ears kikiw убирает человеческие уши, чтобы надевать уши-аксессуары. ">
+<div class="who"><h3>No Ears</h3><p class="author">KIKIW</p></div>
+<p class="what">Убирает человеческие уши, чтобы надевать уши-аксессуары.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://simfileshare.net/folder/144214/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="makeup, scars &amp; facial hair unlocked for kids gauntlet101010 макияж, шрамы и растительность на лице доступны детям и тоддлерам. ">
+<div class="who"><h3>Makeup, Scars &amp; Facial Hair Unlocked for Kids</h3><p class="author">Gauntlet101010</p></div>
+<p class="what">Макияж, шрамы и растительность на лице доступны детям и тоддлерам.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/makeup-scars-and-facial-hair-unlocked-for-kids" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="body hair growth override itm волосы на теле отрастают за 3 дня. ">
+<div class="who"><h3>Body Hair Growth Override</h3><p class="author">ITM</p></div>
+<p class="what">Волосы на теле отрастают за 3 дня.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/body-hair-growth-115300664" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="automatic body hair tyjokr волосы на теле мужчин появляются автоматически. ">
+<div class="who"><h3>Automatic Body Hair</h3><p class="author">tyjokr</p></div>
+<p class="what">Волосы на теле мужчин появляются автоматически.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/automatic-body-hair" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="custom basegame styled looks simplyanjuta готовые образы из базовой игры для cas. ">
+<div class="who"><h3>Custom Basegame Styled Looks</h3><p class="author">SimplyAnjuta</p></div>
+<p class="what">Готовые образы из базовой игры для CAS.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/custom-basegame-styled-looks" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no make-up &amp; no accessories on randomized sims simplyanjuta случайно сгенерированные персонажи без макияжа и аксессуаров. ">
+<div class="who"><h3>No Make-Up &amp; No Accessories on Randomized Sims</h3><p class="author">SimplyAnjuta</p></div>
+<p class="what">Случайно сгенерированные персонажи без макияжа и аксессуаров.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/no-make-up-no-accessories-on-randomized-sims" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="graduation robe recolor starshipcap перекраска мантии выпускника. ">
+<div class="who"><h3>Graduation Robe Recolor</h3><p class="author">starshipcap</p></div>
+<p class="what">Перекраска мантии выпускника.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://boosty.to/starshipcap/posts/fefef03e-c6c7-4c7c-8fbd-a86bc987ce9a" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="visual">
+<header class="cat-head"><h2>Визуальные замены</h2><span class="count">13</span><p>Default replacement: меняют внешний вид без новых функций.</p></header>
+<ul class="mods"><li class="mod" data-f="   " data-q="phone case default replacement apricot rush новые чехлы для телефона персонажей (замена стандартного). ">
+<div class="who"><h3>Phone Case Default Replacement</h3><p class="author">Apricot Rush</p></div>
+<p class="what">Новые чехлы для телефона персонажей (замена стандартного).</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/phone-case-default-replacement" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="phone ui ea xosdr правка телефонного ui. ">
+<div class="who"><h3>Phone UI EA</h3><p class="author">xosdr</p></div>
+<p class="what">Правка телефонного UI.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/phone-ui" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="normal ui pictures sims4me спокойные портреты эмоций в интерфейсе. ">
+<div class="who"><h3>Normal UI Pictures</h3><p class="author">sims4me</p></div>
+<p class="what">Спокойные портреты эмоций в интерфейсе.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.curseforge.com/sims4/mods/focused-normal-ui-picture" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="facial overlay replacement / no effects nv мимика без гримас; без эффектов над головой. ">
+<div class="who"><h3>Facial Overlay Replacement / No Effects</h3><p class="author">NV</p></div>
+<p class="what">Мимика без гримас; без эффектов над головой.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/nv_games/posts/small-mods-69121597" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="book covers, desktop, flower arrangement, анимации компьютера, еды, звонков, тв, пения, письма, lo-fi канал simkatu замены обложек и анимаций. ">
+<div class="who"><h3>Book Covers, Desktop, Flower Arrangement, анимации компьютера, еды, звонков, ТВ, пения, письма, lo-fi канал</h3><p class="author">simkatu</p></div>
+<p class="what">Замены обложек и анимаций.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://sites.google.com/view/simkatu/main-page" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="selfie poses dearkim новые позы для селфи. ">
+<div class="who"><h3>Selfie Poses</h3><p class="author">DearKim</p></div>
+<p class="what">Новые позы для селфи.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/cw/dearkims" target="_blank" rel="noopener">Страница автора<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="tv movies slasti новые фильмы и сериалы по тв. ">
+<div class="who"><h3>TV Movies</h3><p class="author">Slasti</p></div>
+<p class="what">Новые фильмы и сериалы по ТВ.</p>
+<div class="meta"><div class="tags"></div><div class="links"><a class="dl" href="https://t.me/slastiroom/3992" target="_blank" rel="noopener">Часть 1<span aria-hidden="true"> ↗</span></a><a class="dl" href="https://t.me/slastiroom/4254" target="_blank" rel="noopener">Часть 2<span aria-hidden="true"> ↗</span></a></div></div>
+</li><li class="mod" data-f="   " data-q="default easel paintings helenmay новые картины на мольберте. ">
+<div class="who"><h3>Default Easel Paintings</h3><p class="author">HELENMAY</p></div>
+<p class="what">Новые картины на мольберте.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/Helenmay/posts/default-easel-105118337" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="hidden highlight fogity убирает подсветку объектов. ">
+<div class="who"><h3>Hidden Highlight</h3><p class="author">Fogity</p></div>
+<p class="what">Убирает подсветку объектов.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/fogity/posts/mod-hidden-51813502" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="no bike helmet endermbind нет шлема при езде на велосипеде. ">
+<div class="who"><h3>No Bike Helmet</h3><p class="author">endermbind</p></div>
+<p class="what">Нет шлема при езде на велосипеде.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://modthesims.info/d/651133/no-bicycle-helmet.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="first kiss override tinycoffeecups замена анимации первого поцелуя. ">
+<div class="who"><h3>First Kiss Override</h3><p class="author">Tinycoffeecups</p></div>
+<p class="what">Замена анимации первого поцелуя.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/tinycoffeecups/posts/first-kiss-156382496" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="run when busting moddymel беги, когда хочешь писить! ">
+<div class="who"><h3>Run When Busting</h3><p class="author">moddymel</p></div>
+<p class="what">Беги, когда хочешь писить!</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://modthesims.info/d/676206/run-when-busting-to-pee.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="nap animation replacement vellesa замена анимации расслабления. ">
+<div class="who"><h3>Nap Animation Replacement</h3><p class="author">vellesa</p></div>
+<p class="what">Замена анимации расслабления.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.patreon.com/posts/override-nap-134338102" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="env">
+<header class="cat-head"><h2>Окружение и транспорт</h2><span class="count">5</span><p>Дефолтные замены стройки, растений и машин.</p></header>
+<ul class="mods"><li class="mod" data-f="   " data-q="k101 builder: полы, крыши, покрытия земли k-hippie заменяет все полы maxis (базовая игра, дополнения, киты), крыши и покрытия земли. ">
+<div class="who"><h3>K101 Builder: полы, крыши, покрытия земли</h3><p class="author">k-hippie</p></div>
+<p class="what">Заменяет все полы Maxis (базовая игра, дополнения, киты), крыши и покрытия земли.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://tech-hippie.com/k-mods/sub-k101.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="k202 wally: стены cottage, enchanted, gfor, university k-hippie заменяет стены в наборах: cottage, enchanted, gfor и university. ">
+<div class="who"><h3>K202 Wally: стены Cottage, Enchanted, GFOR, University</h3><p class="author">k-hippie</p></div>
+<p class="what">Заменяет стены в наборах: Cottage, Enchanted, GFOR и University.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://tech-hippie.com/k-mods/sub-k202.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="k606 architek: фундаменты и заборы k-hippie заменяет фундаменты и заборы режима строительства. ">
+<div class="who"><h3>K606 Architek: фундаменты и заборы</h3><p class="author">k-hippie</p></div>
+<p class="what">Заменяет фундаменты и заборы режима строительства.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://tech-hippie.com/k-mods/sub-k606.html" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="plants &amp; trees replacement moriel замена растений и деревьев во всех мирах. ">
+<div class="who"><h3>Plants &amp; Trees Replacement</h3><p class="author">Moriel</p></div>
+<p class="what">Замена растений и деревьев во всех мирах.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://lady-moriel.tumblr.com/post/792689905353555968/plants-replacement-30" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="default vehicle replacements bls (blvck-life-simz) новые модели машин базовой игры: купе, маслкары, пикапы, фургоны, седаны. ">
+<div class="who"><h3>Default Vehicle Replacements</h3><p class="author">BLS (blvck-life-simz)</p></div>
+<p class="what">Новые модели машин базовой игры: купе, маслкары, пикапы, фургоны, седаны.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://blvck-life-simz.tumblr.com/post/643971826601574400/bls-default-vehicle-replacements-basegame" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section><section class="cat" id="adult">
+<header class="cat-head"><h2>18+</h2><span class="count">2</span><p>Один основной мод и аддоны к нему.</p></header>
+<ul class="mods"><li class="mod" data-f=" s  " data-q="wickedwhims turbodriver мод на интимный геймплей, отношения и анатомию. korso">
+<div class="who"><h3>WickedWhims</h3><p class="author">TURBODRIVER</p></div>
+<p class="what">Мод на интимный геймплей, отношения и анатомию.</p>
+<div class="meta"><div class="tags"><span class="tag tag-s" title="Есть .ts4script — нужно включить скрипт-моды">скрипт</span><span class="tag tag-ru">RU · korso</span></div><a class="dl" href="https://wickedwhimsmod.com" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li><li class="mod" data-f="   " data-q="пакеты анимаций  пакеты анимаций от разных авторов. ">
+<div class="who"><h3>Пакеты анимаций</h3></div>
+<p class="what">Пакеты анимаций от разных авторов.</p>
+<div class="meta"><div class="tags"></div><a class="dl" href="https://www.loverslab.com/files/category/201-animations-wickedwhims/" target="_blank" rel="noopener">Страница мода<span aria-hidden="true"> ↗</span></a></div>
+</li></ul>
+</section>
+    <p class="empty" id="empty" hidden>Ничего не нашлось. Попробуй ник автора или часть названия файла.</p>
+  </main>
+
+</div>
+
+<script>
+(function(){
+  var q=document.getElementById('q'), mods=[].slice.call(document.querySelectorAll('.mod')),
+      cats=[].slice.call(document.querySelectorAll('.cat')), found=document.getElementById('found'),
+      empty=document.getElementById('empty'),
+      f={bz:document.getElementById('fBz'),s:document.getElementById('fS'),o:document.getElementById('fO')};
+  function apply(){
+    var t=q.value.trim().toLowerCase(), n=0;
+    mods.forEach(function(m){
+      var fl=' '+m.dataset.f+' ', ok=(!t||m.dataset.q.indexOf(t)>-1);
+      for(var k in f){ if(f[k].checked && fl.indexOf(' '+k+' ')<0) ok=false; }
+      m.hidden=!ok; if(ok) n++;
+    });
+    cats.forEach(function(c){ c.hidden=!c.querySelector('.mod:not([hidden])'); });
+    var active=t||Object.keys(f).some(function(k){return f[k].checked});
+    found.textContent=active?('Показано: '+n+' из '+mods.length):'';
+    empty.hidden=n>0;
+  }
+  q.addEventListener('input',apply);
+  for(var k in f) f[k].addEventListener('change',apply);
+})();
+</script>
+
+</body>
+</html>
